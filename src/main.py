@@ -1,5 +1,5 @@
-from board import Board
-from ai_agent import get_best_move
+from src.board import Board
+from src.ai_agent import get_best_move
 
 def print_board(board):
     """Exibe o tabuleiro no terminal de forma legível."""
