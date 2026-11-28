@@ -67,6 +67,16 @@ def aggressive_chase(board, ai_player: int, current_player: int, depth: int = 0)
 
     return float((ai_moves - 2 * opp_moves) + center_bonus)
 
+def order_moves(board, moves: list[tuple[int, int]]) -> list[tuple[int, int]]:
+    """
+    Ordena os movimentos válidos priorizando as casas mais próximas do centro
+    do tabuleiro para maximizar os cortes da Poda Alfa-Beta.
+    """
+    center = (board.size - 1) / 2.0
+    return sorted(
+        moves,
+        key=lambda move: abs(move[0] - center) + abs(move[1] - center)
+    )
 
 HEURISTICS = {
     "simples": simple_mobility,
