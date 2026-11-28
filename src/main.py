@@ -50,11 +50,19 @@ def main():
                         print("Movimento inválido! Escolha uma posição da lista de válidos.")
                 except ValueError:
                     print("Por favor, digite números inteiros válidos.")
+        # No turno da IA dentro do loop do main.py:
         else:
             print("IA pensando...")
-            move = get_best_move(board, ai_player, depth=4)
+            result = get_best_move(board, ai_player, depth=4, use_alpha_beta=True)
+            
+            move = result["move"]
+            score = result["score"]
+            nodes = result["nodes"]
+            time_ms = result["time_ms"]
+            
             if move:
-                print(f"IA escolheu mover para: {move}")
+                print(f"🤖 IA escolheu mover para {move} (Score: {score})")
+                print(f"📊 Métricas | Nós visitados: {nodes} | Tempo: {time_ms:.2f} ms\n")
                 board.make_move(ai_player, move)
             else:
                 print("IA não possui movimentos válidos!")
